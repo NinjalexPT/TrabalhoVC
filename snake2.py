@@ -3,6 +3,8 @@ import sys
 import time
 import random
 
+import snakecv
+
 from pygame.locals import *
 
 snap_time = 0
