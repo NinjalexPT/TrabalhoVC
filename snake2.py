@@ -1,9 +1,10 @@
+import cv2
 import pygame
 import sys
 import time
 import random
 
-import snakecv
+from snakecv.cv_setup_game import get_direction_from_camera, UP, DOWN, LEFT, RIGHT
 
 from pygame.locals import *
 
@@ -18,6 +19,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 surface = pygame.Surface(screen.get_size())
 surface = surface.convert()
 surface.fill((255,255,255))
+
+cap = cv2.VideoCapture(0)
 clock = pygame.time.Clock()
 
 pygame.key.set_repeat(1, 40)
@@ -184,22 +187,20 @@ if __name__ == '__main__':
 #MOVIMENTO E DECIDIDO AQUI
 
     while True:
+
+
+
         for event in pygame.event.get():
-            if event.type == QUIT:
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == KEYDOWN:
-                if event.key == K_UP or event.key == K_w:
-                    snake.point(UP)
-                elif event.key == K_DOWN or event.key == K_s:
-                    snake.point(DOWN)
-                elif event.key == K_LEFT or event.key == K_a:
-                    snake.point(LEFT)
-                elif event.key == K_RIGHT or event.key == K_d:
-                    snake.point(RIGHT)
-                elif event.key == K_q:
-                    sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_q:
+                pygame.quit()
+                sys.exit()
 
+        direction, frame = get_direction_from_camera(cap)
+        if direction:
+            snake.point(direction)
 
         surface.fill((255,255,255))
         snake.move()
@@ -226,6 +227,13 @@ if __name__ == '__main__':
         screen.blit(surface, (0,0))
 
         #updating the screen
+
+        #DESLIGAR O JOGO
+        cv2.imshow("Camera - Bounding Box", frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
         pygame.display.flip()
         pygame.display.update()
         fpsClock.tick(FPS + snake.length/3)
+
