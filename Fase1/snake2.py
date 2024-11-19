@@ -4,7 +4,7 @@ import sys
 import time
 import random
 
-from snakecv.cv_setup_game import get_direction_from_camera, UP, DOWN, LEFT, RIGHT
+from snakecv.cv_setup_game_object import get_direction_from_camera, UP, DOWN, LEFT, RIGHT
 
 from pygame.locals import *
 
