@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b24e70df-2188-4fed-802b-7e1a958f4d30" name="Changes" comment="object detection">
-      <change afterPath="$PROJECT_DIR$/Fase2/snakef2.py" afterDir="false" />
+    <list default="true" id="b24e70df-2188-4fed-802b-7e1a958f4d30" name="Changes" comment="object detection working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase1/snake2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase1/snake2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase1/snakecv/cv_setup_game_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase2/snakecvf2/cv_setup_game_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase2/snakecvf2/cv_setup_game_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase2/snakecvf2/cv_setup_game_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase2/snakef2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase2/snakef2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,18 +35,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "NinjalexPT"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;NinjalexPT&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NinjalexPT/TrabalhoVC",
-    "accountId": "d5051205-6989-4c99-a711-75c9bb463826"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NinjalexPT/TrabalhoVC&quot;,
+    &quot;accountId&quot;: &quot;d5051205-6989-4c99-a711-75c9bb463826&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -57,24 +56,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.cv_setup_game.executor": "Run",
-    "Python.cv_setup_game_object.executor": "Run",
-    "Python.snake2.executor": "Run",
-    "Python.snakef2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/alexn/TrabalhoIVC/Fase2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.cv_setup_game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cv_setup_game_object.executor&quot;: &quot;Run&quot;,
+    &quot;Python.snake2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.snakef2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexn/TrabalhoIVC/Fase2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alexn\TrabalhoIVC\Fase2" />
@@ -106,7 +105,8 @@
       <workItem from="1730754566989" duration="429000" />
       <workItem from="1730972557676" duration="22000" />
       <workItem from="1731951324361" duration="112000" />
-      <workItem from="1732024814375" duration="3175000" />
+      <workItem from="1732024814375" duration="4168000" />
+      <workItem from="1732181756282" duration="1280000" />
     </task>
     <task id="LOCAL-00001" summary="object detection">
       <option name="closed" value="true" />
@@ -116,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732025035876</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="object detection working">
+      <option name="closed" value="true" />
+      <created>1732028040133</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732028040133</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,12 +132,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="object detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="object detection" />
+    <MESSAGE value="object detection working" />
+    <option name="LAST_COMMIT_MESSAGE" value="object detection working" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game.coverage" NAME="cv_setup_game Coverage Results" MODIFIED="1730754411786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase1/snakecv" />
     <SUITE FILE_PATH="coverage/TrabalhoIVC$snake2.coverage" NAME="snake2 Coverage Results" MODIFIED="1732026269132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase1" />
-    <SUITE FILE_PATH="coverage/TrabalhoIVC$snakef2.coverage" NAME="snakef2 Coverage Results" MODIFIED="1732027949797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2" />
-    <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game_object.coverage" NAME="cv_setup_game_object Coverage Results" MODIFIED="1732027615565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2/snakecvf2" />
+    <SUITE FILE_PATH="coverage/TrabalhoIVC$snakef2.coverage" NAME="snakef2 Coverage Results" MODIFIED="1732181825099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2" />
+    <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game_object.coverage" NAME="cv_setup_game_object Coverage Results" MODIFIED="1732182727919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2/snakecvf2" />
   </component>
 </project>
