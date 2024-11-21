@@ -96,6 +96,12 @@ def get_direction_from_camera(cap):
     # Linha horizontal ao meio (separando cima e baixo na área central)
     cv2.line(frame, (left_section, middle_top), (right_section, middle_top), (255, 0, 0), 2)
 
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(frame, "LEFT", (0, 30), font, 1, (255, 0, 0), 2)
+    cv2.putText(frame, "RIGHT", (right_section + 1, 30), font, 1, (255, 0, 0), 2)
+    cv2.putText(frame, "UP", (left_section+1, 30), font, 1, (255, 0, 0), 2)
+    cv2.putText(frame, "DOWN", (left_section+1 , height-10), font, 1, (255, 0, 0), 2)
+
     return direction, frame
 
 if __name__ == "__main__":
