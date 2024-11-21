@@ -1,3 +1,5 @@
+from datetime import time
+
 import cv2
 import numpy as np
 from ultralytics import YOLO
@@ -8,7 +10,7 @@ DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
-# Inicializar o modelo YOLOv8 pré-treinado
+# Inicializa o modelo YOLOv8 pré-treinado
 model = YOLO("yolov8n.pt")  # Certifique-se de que o modelo YOLOv8 está corretamente configurado
 
 COCO_CLASSES = [
@@ -63,6 +65,8 @@ def get_direction_from_camera(cap):
     # Realizar a detecção usando YOLOv8
     results = model(frame)
     direction = None
+    largest_box = None
+    largest_area = 0
 
     # Processar as detecções
     for result in results:
@@ -73,16 +77,27 @@ def get_direction_from_camera(cap):
 
             # Apenas lidar com telemóveis
             if cls == 67:  # ID 67 é o código COCO para "cell phone"
-                cx, cy = calculate_center([x1, y1, x2, y2])
-                direction = determine_direction(cx, cy, width, height)
+                # Calcular a área da bounding box
+                area = (x2 - x1) * (y2 - y1)
 
-                # Desenhar bounding box e centro no frame
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
+                # Apenas considerar a maior detecção
+                if area > largest_area:
+                    largest_area = area
+                    largest_box = (x1, y1, x2, y2, confidence)
 
-                # Escrever o nome da classe e a confiança acima da bounding box
-                label = f"{COCO_CLASSES[cls]}: {confidence:.2f}"
-                cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+        # Processar a maior caixa detectada
+    if largest_box:
+        x1, y1, x2, y2, confidence = largest_box
+        cx, cy = calculate_center([x1, y1, x2, y2])
+        direction = determine_direction(cx, cy, width, height)
+
+        # Desenhar bounding box e centro no frame
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
+
+        # Escrever o nome da classe e a confiança acima da bounding box
+        label = f"Cell Phone: {confidence:.2f}"
+        cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
 
     # Desenha as linhas de referência para dividir a tela
     left_section = width // 3

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b24e70df-2188-4fed-802b-7e1a958f4d30" name="Changes" comment="object detection working">
+    <list default="true" id="b24e70df-2188-4fed-802b-7e1a958f4d30" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fase2/snakecvf2/cv_setup_game_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase2/snakecvf2/cv_setup_game_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase2/snakef2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fase2/snakef2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +105,7 @@
       <workItem from="1730972557676" duration="22000" />
       <workItem from="1731951324361" duration="112000" />
       <workItem from="1732024814375" duration="4168000" />
-      <workItem from="1732181756282" duration="1280000" />
+      <workItem from="1732181756282" duration="4062000" />
     </task>
     <task id="LOCAL-00001" summary="object detection">
       <option name="closed" value="true" />
@@ -124,7 +123,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732028040133</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="labeled directions">
+      <option name="closed" value="true" />
+      <created>1732183096183</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732183096183</updated>
+    </task>
+    <task id="LOCAL-00004" summary=".">
+      <option name="closed" value="true" />
+      <created>1732183119801</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732183119801</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,12 +148,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="object detection" />
     <MESSAGE value="object detection working" />
-    <option name="LAST_COMMIT_MESSAGE" value="object detection working" />
+    <MESSAGE value="labeled directions" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game.coverage" NAME="cv_setup_game Coverage Results" MODIFIED="1730754411786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase1/snakecv" />
     <SUITE FILE_PATH="coverage/TrabalhoIVC$snake2.coverage" NAME="snake2 Coverage Results" MODIFIED="1732026269132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase1" />
-    <SUITE FILE_PATH="coverage/TrabalhoIVC$snakef2.coverage" NAME="snakef2 Coverage Results" MODIFIED="1732181825099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2" />
-    <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game_object.coverage" NAME="cv_setup_game_object Coverage Results" MODIFIED="1732182727919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2/snakecvf2" />
+    <SUITE FILE_PATH="coverage/TrabalhoIVC$snakef2.coverage" NAME="snakef2 Coverage Results" MODIFIED="1732185381002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2" />
+    <SUITE FILE_PATH="coverage/TrabalhoIVC$cv_setup_game_object.coverage" NAME="cv_setup_game_object Coverage Results" MODIFIED="1732184425723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fase2/snakecvf2" />
   </component>
 </project>
