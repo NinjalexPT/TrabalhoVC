@@ -1,0 +1,268 @@
+import cv2
+import pygame
+import sys
+import time
+import random
+
+from snakecvf3.cv_setup_moveTracking import get_direction_from_camera, UP, DOWN, LEFT, RIGHT
+
+from pygame.locals import *
+
+snap_time = 0
+#rainbow_berry_effects = 0
+FPS = 15
+pygame.init()
+fpsClock=pygame.time.Clock()
+
+SCREEN_WIDTH, SCREEN_HEIGHT = 800, 800
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+surface = pygame.Surface(screen.get_size())
+surface = surface.convert()
+surface.fill((255,255,255))
+
+cap = cv2.VideoCapture(0)
+clock = pygame.time.Clock()
+
+pygame.key.set_repeat(1, 40)
+
+GRIDSIZE=10
+GRID_WIDTH = int(SCREEN_WIDTH / GRIDSIZE)
+GRID_HEIGHT = int(SCREEN_HEIGHT / GRIDSIZE)
+UP    = (0, -1)
+DOWN  = (0, 1)
+LEFT  = (-1, 0)
+RIGHT = (1, 0)
+BERRY_TYPES = 5
+
+screen.blit(surface, (0,0))
+
+
+def draw_box(surf, color, pos):
+    r = pygame.Rect((pos[0], pos[1]), (GRIDSIZE, GRIDSIZE))
+    pygame.draw.rect(surf, color, r)
+
+class Snake(object):
+    def __init__(self):
+        self.lose()
+        self.color = (0,0,0)
+        self.snap_time = 0
+
+
+    def get_head_position(self):
+        return self.positions[0]
+
+    def lose(self):
+        print('You have lost. The game will restart shortly. Press "q" to quit')
+        time.sleep(2.5)
+        self.length = 1
+        self.positions =  [((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))]
+        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
+
+    def point(self, pt):
+        if self.length > 1 and (pt[0] * -1, pt[1] * -1) == self.direction:
+            return
+        else:
+            self.direction = pt
+
+    def move(self):
+        cur = self.positions[0]
+        x, y = self.direction
+        # if timer expires, set in_boost_snap to false
+        cur_speed_time = time.time()
+        if cur_speed_time - self.snap_time >= 5:
+            speed = 1
+            # print("timer is off " + str(cur_time) + " " + str(self.snap_time))
+            self.snap_time = 0
+        else:
+            speed = 2
+            # print("timer is on " + str(cur_time) + str(self.snap_time))
+
+        new = (((cur[0]+(x*speed*GRIDSIZE)) % SCREEN_WIDTH), (cur[1]+(y*speed*GRIDSIZE)) % SCREEN_HEIGHT)
+        if len(self.positions) > 2 and new in self.positions[2:]:
+            self.lose()
+        else:
+            self.positions.insert(0, new)
+            if len(self.positions) > self.length:
+                self.positions.pop()
+
+    def draw(self, surf):
+        for p in self.positions:
+            draw_box(surf, self.color, p)
+
+class Apple(object):
+    def __init__(self):
+        self.position = (0,0)
+        self.color = (255,0,0)
+        self.randomize()
+
+    def randomize(self):
+        self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE, random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+
+    def draw(self, surf):
+        draw_box(surf, self.color, self.position)
+
+def check_eat_apple(snake, apple):
+    if snake.get_head_position() == apple.position:
+        snake.length += 1
+        apple.randomize()
+
+class Blueberry(object):
+    def __init__(self):
+        self.position = (0,0)
+        self.color = (0,0,255)
+        self.randomize()
+
+    def randomize(self):
+        self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE, random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+
+    def draw(self, surf):
+        draw_box(surf, self.color, self.position)
+
+def check_eat_blueberry(snake, Blueberry):
+    if snake.get_head_position() == blueberry.position:
+        #start timer for 5-10 seconds
+        snake.snap_time = time.time()
+        print("""You have eaten a blueberry.
+Your speed will be doubled for the next 5 seconds.
+_______________________________________________________""")
+        time.sleep(1)
+        snake.length += 5
+        Blueberry.randomize()
+
+
+
+
+class Rock (object):
+    def __init__(self):
+        self.position = (0,0)
+        self.color = (160,80,30)
+        self.randomize()
+
+    def randomize(self):
+        self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE,
+        random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+
+    def draw(self, surf):
+        draw_box(surf, self.color, self.position)
+
+def check_smash_rock(snake, rock):
+    if snake.get_head_position() == rock.position:
+        snake.lose()
+
+
+class Thorns (object):
+    def __init__(self):
+        self.position = (0,0)
+        self.color = (50,135,50)
+        self.randomize()
+
+    def randomize(self):
+        self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE,
+        random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+
+    def draw(self, surf):
+        draw_box(surf, self.color, self.position)
+
+def check_smash_thorns(snake, thorns):
+    if snake.get_head_position() == thorns.position:
+        snake.lose()
+
+
+
+
+
+
+if __name__ == '__main__':
+    # Inicializa o jogo
+    snake = Snake()
+    apple = Apple()
+    rock = Rock()
+    blueberry = Blueberry()
+    thorns = Thorns()
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    # Variável de pausa
+    paused = True
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_q:
+                pygame.quit()
+                sys.exit()
+
+        # Obtém direção da câmera
+        direction, frame = get_direction_from_camera(cap)
+
+        # Verifica se a direção está ativa
+        if direction:
+            paused = False
+            snake.point(direction)
+        else:
+            paused = True
+
+        # Preenche o fundo
+        surface.fill((255, 255, 255))
+
+        if not paused:
+            # Movimento da cobra
+            snake.move()
+
+            # checking for collision
+            check_eat_apple(snake, apple)
+            check_eat_blueberry(snake, blueberry)
+            check_smash_thorns(snake, thorns)
+            check_smash_rock(snake, rock)
+
+            # drawing everything
+            snake.draw(surface)
+            apple.draw(surface)
+            blueberry.draw(surface)
+            rock.draw(surface)
+            thorns.draw(surface)
+
+
+            # Exibe pontuação
+            font = pygame.font.Font(None, 36)
+            text = font.render(str(snake.length), 1, (10, 10, 10))
+            textpos = text.get_rect()
+            textpos.centerx = 20
+            surface.blit(text, textpos)
+        else:
+            # Exibe mensagem de pausa
+            font = pygame.font.Font(None, 36)
+            text = font.render("Paused: Select a region to continue!", 1, (200, 0, 0))
+            textpos = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+            surface.blit(text, textpos)
+
+        # Atualiza a tela
+        screen.blit(surface, (0, 0))
+
+
+        # Desenha as linhas de referência para dividir a tela
+        left_section = width // 3
+        right_section = 2 * (width // 3)
+        middle_top = height // 2
+
+        # Linha vertical esquerda (separando área da esquerda)
+        cv2.line(frame, (left_section, 0), (left_section, height), (255, 0, 0), 2)
+        # Linha vertical direita (separando área da direita)
+        cv2.line(frame, (right_section, 0), (right_section, height), (255, 0, 0), 2)
+        # Linha horizontal ao meio (separando cima e baixo na área central)
+        cv2.line(frame, (left_section, middle_top), (right_section, middle_top), (255, 0, 0), 2)
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        cv2.putText(frame, "LEFT", (0, 30), font, 1, (255, 0, 0), 2)
+        cv2.putText(frame, "RIGHT", (right_section + 1, 30), font, 1, (255, 0, 0), 2)
+        cv2.putText(frame, "UP", (left_section + 1, 30), font, 1, (255, 0, 0), 2)
+        cv2.putText(frame, "DOWN", (left_section + 1, height - 10), font, 1, (255, 0, 0), 2)
+        cv2.imshow("Camera - Playing", frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        pygame.display.flip()
+        pygame.display.update()
+        fpsClock.tick(FPS + snake.length/3)
+

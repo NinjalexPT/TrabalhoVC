@@ -1,7 +1,4 @@
-from datetime import time
-
 import cv2
-import numpy as np
 from ultralytics import YOLO
 
 # Definições de Direções
@@ -125,7 +122,7 @@ if __name__ == "__main__":
     while True:
         direction, frame = get_direction_from_camera(cap)
         if frame is not None:
-            cv2.imshow("Detecção de Telemóvel", frame)
+            cv2.imshow("Detecao de Telemovel", frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
